@@ -1,5 +1,7 @@
+#!/usr/bin/env python
 import argparse
 import json
+
 
 def main():
     parser = argparse.ArgumentParser(description='Generate diff')
@@ -10,7 +12,6 @@ def main():
     args = parser.parse_args()
     answer = generate_diff(args.first_file, args.second_file)
     print(answer)
-
 
 
 def generate_diff(file_path1, file_path2):
@@ -42,7 +43,8 @@ def generate_diff(file_path1, file_path2):
     for i in lst:
         string += '  ' + i + '\n'
 
-    return ('\n' +'{' + '\n' + f'{string.lower()}' + '}')
+    return ('\n' + '{' + '\n' + f'{string.lower()}' + '}')
+
 
 if __name__ == '__main__':
     main()
