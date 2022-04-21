@@ -4,4 +4,5 @@
 [![Actions Status](https://github.com/NNbaur/python-project-lvl2/actions/workflows/GithubActions1.yml/badge.svg)](https://github.com/NNbaur/python-project-lvl2/actions)
 
 <a href="https://codeclimate.com/github/NNbaur/python-project-lvl2/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
+
 How works gendiff func(comparing two json files): https://asciinema.org/a/488465
