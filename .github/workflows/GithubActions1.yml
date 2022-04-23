@@ -19,6 +19,7 @@ jobs:
         run:
           pip install poetry
           pip install flake8
+          poetry new .
           make install
       - name: Run linter
         run:
