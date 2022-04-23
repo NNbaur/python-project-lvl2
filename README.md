@@ -5,4 +5,6 @@
 
 <a href="https://codeclimate.com/github/NNbaur/python-project-lvl2/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
 
+<a href="https://codeclimate.com/github/NNbaur/python-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/fd01772ef88bb39aa186/test_coverage" /></a>
+
 How works gendiff func(comparing two json files): https://asciinema.org/a/488465
