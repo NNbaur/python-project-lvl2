@@ -8,4 +8,4 @@
 <a href="https://codeclimate.com/github/NNbaur/python-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/fd01772ef88bb39aa186/test_coverage" /></a>
 
 How to work gendiff function(comparing of two json files):
-<script id="asciicast-488465" src="https://asciinema.org/a/488465.js" async></script>
+[![asciicast](https://asciinema.org/a/488465.svg)](https://asciinema.org/a/488465)
