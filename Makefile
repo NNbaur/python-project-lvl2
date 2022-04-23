@@ -20,4 +20,4 @@ test:
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest --cov=project
+	poetry run pytest --cov=project --cov-report xml
