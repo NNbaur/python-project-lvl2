@@ -20,7 +20,7 @@ jobs:
           pip install poetry
           pip install flake8
           pip install pytest
-          pip install pytest-html
+          pip install pytest-cov
           make install
       - name: Run linter
         run:
