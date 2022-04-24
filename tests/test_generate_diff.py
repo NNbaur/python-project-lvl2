@@ -1,5 +1,5 @@
 from project.generate_diff import generate_diff
-import json
+from project.parse import parse_data
 import os
 
 
@@ -10,15 +10,30 @@ def restructuring_path(file_name):
     return path
 
 
-def test_generate_diff1():
+def test_gen_diff_json():
     path_res1 = restructuring_path('result_test1.json')
-    expected_res1 = json.load(open(path_res1))
+    expected_res1 = parse_data(path_res1)
     path_t1 = restructuring_path('file1.json')
     path_t2 = restructuring_path('file2.json')
     result1 = generate_diff(path_t1, path_t2)
     assert result1 == expected_res1
     path_res2 = restructuring_path('result_test2.json')
-    expected_res2 = json.load(open(path_res2))
+    expected_res2 = parse_data(path_res2)
+    path_t3 = restructuring_path('file1.json')
+    path_t4 = restructuring_path('empty_dict.json')
+    result2 = generate_diff(path_t3, path_t4)
+    assert result2 == expected_res2
+
+
+def test_gen_diff_yml():
+    path_res1 = restructuring_path('result_test_yml1.yml')
+    expected_res1 = parse_data(path_res1)
+    path_t1 = restructuring_path('filepath1.yml')
+    path_t2 = restructuring_path('filepath2.yml')
+    result1 = generate_diff(path_t1, path_t2)
+    assert result1 == expected_res1
+    path_res2 = restructuring_path('result_test_yml2.yml')
+    expected_res2 = parse_data(path_res2)
     path_t3 = restructuring_path('file1.json')
     path_t4 = restructuring_path('empty_dict.json')
     result2 = generate_diff(path_t3, path_t4)

@@ -1,4 +1,4 @@
-import json
+from project.parse import parse_data
 
 
 def is_bool(argument):
@@ -6,13 +6,12 @@ def is_bool(argument):
 
 
 def generate_diff(file_path1, file_path2):
-    s1 = json.load(open(file_path1))
-    s2 = json.load(open(file_path2))
+    s1 = parse_data(file_path1)
+    s2 = parse_data(file_path2)
     set1 = set(s1)
     set2 = set(s2)
     lst = []
     string = ""
-
     set3 = set1 - set2
     set4 = set2 - set1
     set5 = set1 & set2

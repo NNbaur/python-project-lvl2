@@ -21,6 +21,7 @@ jobs:
           pip install flake8
           pip install pytest
           pip install pytest-cov
+          pip install PyYAML
           make install
       - name: Run linter
         run:

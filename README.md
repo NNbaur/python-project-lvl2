@@ -9,3 +9,6 @@
 
 How to work gendiff function(comparing of two json files):
 [![asciicast](https://asciinema.org/a/488465.svg)](https://asciinema.org/a/488465)
+
+How to work gendiff function(comparing of two YAML files):
+[![asciicast](https://asciinema.org/a/489649.svg)](https://asciinema.org/a/489649)
