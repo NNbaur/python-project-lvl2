@@ -1,16 +1,25 @@
 #!/usr/bin/env python
 import argparse
-from project.generate_diff import generate_diff
+from project.diff_builder.generate_diff import generate_diff
+from project.formatter import stylish
 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file', type=str)
     parser.add_argument('second_file', type=str)
-    parser.add_argument('-f', '--format', help='set format of output')
+    parser.add_argument(
+        '-f',
+        '--format',
+        help='set format of output',
+        default=stylish
+    )
 
     args = parser.parse_args()
-    answer = generate_diff(args.first_file, args.second_file)
+    answer = generate_diff(
+        args.first_file,
+        args.second_file,
+        args.format)
     print(answer)
 
 

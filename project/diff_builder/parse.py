@@ -1,5 +1,13 @@
 import yaml
 import json
+import os
+
+
+def restructuring_path(file_name):
+    path = os.path.abspath(file_name)
+    path = path.split('\\')
+    path = '/'.join(path)
+    return path
 
 
 def parse_data(path):
