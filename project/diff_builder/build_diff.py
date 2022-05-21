@@ -1,6 +1,3 @@
-from project.diff_builder.parse import restructuring_path, parse_data
-
-
 def is_none(function):
     def inner(argument):
         result = function(argument)
