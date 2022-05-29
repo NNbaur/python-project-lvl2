@@ -1,81 +1,79 @@
-def is_none(function):
-    def inner(argument):
-        result = function(argument)
-        return 'null' if result is None else result
-    return inner
+def build_diff_structure(
+    diff_type,
+    key,
+    value_old,
+    value_new=None,
+    child=None,
+):
+
+    return {
+        'diff_type': diff_type,
+        'key': key,
+        'value_old': value_old,
+        'value_new': value_new,
+        'child': child,
+    }
 
 
-@is_none
-def is_bool1(argument):
-    return str(argument).lower() if type(argument) is bool else argument
-
-
-def collect_diff_types(file1, file2):
-    set1 = set(file1)
-    set2 = set(file2)
-    deleted = set1 - set2
-    added = set2 - set1
-    unchanged = set1 & set2
-    return deleted, added, unchanged
-
-
-def get_children(value):
-    dictionary = dict()
-
-    def inner(dictionary):
-        if type(value) is dict:
-            for k, v in value.items():
-                if type(v) is dict:
-                    dictionary[f'  {k}'] = get_children(v)
-                else:
-                    dictionary[f'  {k}'] = is_bool1(v)
-        return dictionary
-    return inner(dictionary)
-
-
-def diff_deleted(collection, file, dictionary):
-    for i in collection:
-        if type(file[i]) is dict:
-            dictionary[f'- {i}'] = get_children(file[i])
-        else:
-            dictionary[f'- {i}'] = is_bool1(file[i])
-    return dictionary
-
-
-def diff_added(collection, file, dictionary):
-    for j in collection:
-        if type(file[j]) is dict:
-            dictionary[f'+ {j}'] = get_children(file[j])
-        else:
-            dictionary[f'+ {j}'] = is_bool1(file[j])
-    return dictionary
-
-
-def diff_unchanged(collection, file1, file2, inner, dict1):
-    for k in collection:
-        if type(file1[k]) is dict and type(file2[k]) is dict:
-            dict1[f'  {k}'] = inner(file1[k], file2[k])
-        elif file1[k] == file2[k]:
-            dict1[f'  {k}'] = is_bool1(file1[k])
-        else:
-            if type(file1[k]) is dict:
-                dict1[f'- {k}'] = get_children(file1[k])
-            else:
-                dict1[f'- {k}'] = is_bool1(file1[k])
-            if type(file2[k]) is dict:
-                dict1[f'+ {k}'] = get_children(file2[k])
-            else:
-                dict1[f'+ {k}'] = is_bool1(file2[k])
-    return dict1
+def fill_diff(key, dict1, dict2):
+    if key not in dict1:
+        collection = build_diff_structure(
+            'added',
+            key,
+            dict2[key],
+        )
+    elif key not in dict2:
+        collection = build_diff_structure(
+            'deleted',
+            key,
+            dict1[key],
+        )
+    elif dict1[key] == dict2[key]:
+        collection = build_diff_structure(
+            'unchanged',
+            key,
+            dict1[key],
+        )
+    elif isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+        collection = build_diff_structure(
+            'child',
+            key,
+            value_old=None,
+            child=create_diff(
+                dict1[key],
+                dict2[key],
+            ),
+        )
+    else:
+        collection = build_diff_structure(
+            'changed',
+            key,
+            value_old=dict1[key],
+            value_new=dict2[key],
+        )
+    return collection
 
 
 def create_diff(file1, file2):
+    keys = file1.keys() | file2.keys()
+    diff = []
+    for key in sorted(keys):
+        diff.append(fill_diff(key, file1, file2))
+    return diff
 
-    def inner(file1, file2):
-        dict1 = dict()
-        col1, col2, col3 = collect_diff_types(file1, file2)
-        diff_deleted(col1, file1, dict1)
-        diff_added(col2, file2, dict1)
-        diff_unchanged(col3, file1, file2, inner, dict1)
-        return dict1
-    return inner(file1, file2)
+
+def get_diff_type(collection):
+    return collection['diff_type']
+
+
+def get_key(collection):
+    return collection['key']
+
+
+def get_value(collection):
+    return (collection['value_old'], collection['value_new'])
+
+
+def get_child(collection):
+    return collection['child']
+
