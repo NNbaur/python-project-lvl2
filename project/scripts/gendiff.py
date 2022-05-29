@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import argparse
 from project.diff_builder.generate_diff import generate_diff
-from project.formatter import stylish
+from project.formatter import create_stylish
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
         '-f',
         '--format',
         help='set format of output',
-        default=stylish
+        default=create_stylish
     )
 
     args = parser.parse_args()
