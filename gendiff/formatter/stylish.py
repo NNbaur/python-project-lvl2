@@ -1,4 +1,4 @@
-from project.diff_builder.build_diff import get_diff_type, get_key,\
+from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
 
 

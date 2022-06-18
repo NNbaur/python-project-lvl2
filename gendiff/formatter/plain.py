@@ -1,4 +1,4 @@
-from project.diff_builder.build_diff import get_diff_type, get_key,\
+from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
 
 
@@ -14,7 +14,7 @@ def create_plain(diff, path=[]):
         if diff_type == 'added':
             collection.append(
                 create_string(
-                    "Property '{path}' was added with value: {value}",
+                    "Property {path} was added with value: {value}",
                     path,
                     diff_value[0]
                 )
@@ -22,7 +22,7 @@ def create_plain(diff, path=[]):
         elif diff_type == 'deleted':
             collection.append(
                 create_string(
-                    "Property '{path}' was removed",
+                    "Property {path} was removed",
                     path,
                     diff_value[0]
                 )
@@ -32,7 +32,7 @@ def create_plain(diff, path=[]):
         elif diff_type == 'changed':
             collection.append(
                 create_string(
-                    "Property '{path}' was updated. From {value1} to {value2}",
+                    "Property {path} was updated. From {value1} to {value2}",
                     path,
                     diff_value[0],
                     diff_value[1]
@@ -51,7 +51,8 @@ def is_none1(function):
 
 @is_none1
 def is_bool1(arg):
-    return str(arg).lower() if isinstance(arg, bool) else f"'{arg}'"
+    return str(arg).lower() if isinstance(arg, bool)\
+        else f"'{arg}'" if isinstance(arg, str) else arg
 
 
 def create_value(diff_value):
@@ -63,7 +64,7 @@ def create_value(diff_value):
 
 
 def create_string(template, path, value1, value2=None):
-    if template == "Property '{path}' was updated. " \
+    if template == "Property {path} was updated. " \
                    "From {value1} to {value2}":
         return template.format(
             path='.'.join(path),
