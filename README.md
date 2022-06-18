@@ -21,4 +21,7 @@ How to work gendiff function:
     Complicated tree structure(format - plain):
 [![asciicast](https://asciinema.org/a/502486.svg)](https://asciinema.org/a/502486)
 
+    Complicated tree structure(format - json):
+[![asciicast](https://asciinema.org/a/502494.svg)](https://asciinema.org/a/502494)
+
 

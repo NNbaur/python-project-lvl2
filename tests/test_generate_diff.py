@@ -1,6 +1,7 @@
 from project.diff_builder.generate_diff import generate_diff
 from project.diff_builder.parse import parse_data
 from tests.test_parse import get_path
+import json
 
 
 def test_gen_diff_json():
@@ -61,3 +62,12 @@ def test_gen_diff_plain():
         'tests/fixtures/filepath3.yml',
         'tests/fixtures/filepath_empty.yml', 'plain')
     assert result2 == expected_res2
+
+
+def test_gen_diff_json():
+    path_res1 = get_path('result_json.json')
+    expected_res1 = json.dumps(parse_data(path_res1), indent=4)
+    result1 = generate_diff(
+        'tests/fixtures/filepath3.json',
+        'tests/fixtures/filepath4.json', 'json')
+    assert result1 == expected_res1
