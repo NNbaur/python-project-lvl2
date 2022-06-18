@@ -7,8 +7,18 @@
 
 <a href="https://codeclimate.com/github/NNbaur/python-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/fd01772ef88bb39aa186/test_coverage" /></a>
 
-How to work gendiff function(comparing of two json files):
+How to work gendiff function:
+
+    Comparing of two json files:
 [![asciicast](https://asciinema.org/a/488465.svg)](https://asciinema.org/a/488465)
 
-How to work gendiff function(comparing of two YAML files):
+    Comparing of two YAML files:
 [![asciicast](https://asciinema.org/a/489649.svg)](https://asciinema.org/a/489649)
+
+    Complicated tree structure(format - stylish):
+[![asciicast](https://asciinema.org/a/502483.svg)](https://asciinema.org/a/502483)
+
+    Complicated tree structure(format - plain):
+[![asciicast](https://asciinema.org/a/502486.svg)](https://asciinema.org/a/502486)
+
+
