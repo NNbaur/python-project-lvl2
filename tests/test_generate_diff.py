@@ -34,7 +34,7 @@ def test_gen_diff_yml():
     assert result2 == expected_res2
 
 
-def test_gen_diff_comp_tree():
+def test_gen_diff_ts():
     path_res1 = get_path('result_test_yml3.yml')
     expected_res1 = parse_data(path_res1)
     result1 = generate_diff(
@@ -49,7 +49,7 @@ def test_gen_diff_comp_tree():
     assert result2 == expected_res2
 
 
-def test_gen_diff_plain():
+def test_gen_diff_ts_plain():
     path_res1 = get_path('result_plain1.json')
     expected_res1 = parse_data(path_res1)
     result1 = generate_diff(
@@ -64,7 +64,7 @@ def test_gen_diff_plain():
     assert result2 == expected_res2
 
 
-def test_gen_diff_json():
+def test_gen_diff_ts_json():
     path_res1 = get_path('result_json.json')
     expected_res1 = json.dumps(parse_data(path_res1), indent=4)
     result1 = generate_diff(
