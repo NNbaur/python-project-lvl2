@@ -52,7 +52,7 @@ def is_none1(function):
 @is_none1
 def is_bool1(arg):
     return str(arg).lower() if isinstance(arg, bool)\
-        else f"'{arg}'" if isinstance(arg, str) else arg
+        else {arg} if isinstance(arg, int) else f"'{arg}'"
 
 
 def create_value(diff_value):
