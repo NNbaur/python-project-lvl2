@@ -1,4 +1,5 @@
-from project.diff_builder.build_diff import get_diff_type, get_key, get_value, get_child
+from project.diff_builder.build_diff import get_diff_type, get_key,\
+    get_value, get_child
 
 
 def create_plain(diff, path=[]):
@@ -12,31 +13,31 @@ def create_plain(diff, path=[]):
 
         if diff_type == 'added':
             collection.append(
-            create_string(
-            "Property '{path}' was added with value: {value}",
-            path,
-            diff_value[0]
+                create_string(
+                    "Property '{path}' was added with value: {value}",
+                    path,
+                    diff_value[0]
+                )
             )
-        )
         elif diff_type == 'deleted':
             collection.append(
-            create_string(
-            "Property '{path}' was removed",
-            path,
-            diff_value[0]
+                create_string(
+                    "Property '{path}' was removed",
+                    path,
+                    diff_value[0]
+                )
             )
-        )
         elif diff_type == 'child':
             collection.append(create_plain(child, path))
         elif diff_type == 'changed':
             collection.append(
-            create_string(
-            "Property '{path}' was updated. From {value1} to {value2}",
-            path,
-            diff_value[0],
-            diff_value[1]
+                create_string(
+                    "Property '{path}' was updated. From {value1} to {value2}",
+                    path,
+                    diff_value[0],
+                    diff_value[1]
+                )
             )
-        )
         path.pop()
     return '\n'.join(collection)
 
@@ -65,12 +66,11 @@ def create_string(template, path, value1, value2=None):
     if template == "Property '{path}' was updated. " \
                    "From {value1} to {value2}":
         return template.format(
-        path='.'.join(path),
-        value1=create_value(value1),
-        value2=create_value(value2)
+            path='.'.join(path),
+            value1=create_value(value1),
+            value2=create_value(value2)
         )
     return template.format(
         path='.'.join(path),
         value=create_value(value1)
     )
-

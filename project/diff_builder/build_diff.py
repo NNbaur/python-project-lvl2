@@ -76,4 +76,3 @@ def get_value(collection):
 
 def get_child(collection):
     return collection['child']
-
