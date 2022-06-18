@@ -1,6 +1,6 @@
-from gendiff.diff_builder.build_diff import create_diff
-from gendiff.diff_builder.parse import parse_data, restructuring_path
-from gendiff.formatter.format_type import apply_format
+from project.diff_builder.build_diff import create_diff
+from project.diff_builder.parse import parse_data, restructuring_path
+from project.formatter.format_type import apply_format
 
 
 def generate_diff(path1, path2, style='stylish'):
