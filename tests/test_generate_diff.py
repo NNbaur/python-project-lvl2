@@ -1,5 +1,5 @@
-from project.diff_builder.generate_diff import generate_diff
-from project.diff_builder.parse import parse_data
+from gendiff.diff_builder.generate_diff import generate_diff
+from gendiff.diff_builder.parse import parse_data
 from tests.test_parse import get_path
 import json
 
