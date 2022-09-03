@@ -3,7 +3,7 @@ from gendiff.formatter.plain import create_plain
 from gendiff.formatter.json import create_json
 
 
-def apply_format(diff, style):
+def apply_format(diff: list, style: str) -> str:
     if style == 'stylish':
         return create_stylish(diff)
     elif style == 'plain':

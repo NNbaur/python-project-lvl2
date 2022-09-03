@@ -1,8 +1,9 @@
 from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
+from typing import Any
 
 
-def create_plain(diff, path=[]):
+def create_plain(diff: list, path=[]) -> str:
     collection = []
     for tree in diff:
         diff_type = get_diff_type(tree)
@@ -50,12 +51,12 @@ def is_none1(function):
 
 
 @is_none1
-def is_bool1(arg):
+def is_bool1(arg: Any) -> Any:
     return str(arg).lower() if isinstance(arg, bool)\
         else arg if isinstance(arg, int) else f"'{arg}'"
 
 
-def create_value(diff_value):
+def create_value(diff_value: Any) -> Any:
     if isinstance(diff_value, dict):
         diff_value = '[complex value]'
     else:
@@ -63,7 +64,7 @@ def create_value(diff_value):
     return diff_value
 
 
-def create_string(template, path, value1, value2=None):
+def create_string(template: str, path: list, value1: Any, value2=None) -> str:
     if template == "Property '{path}' was updated. " \
                    "From {value1} to {value2}":
         return template.format(

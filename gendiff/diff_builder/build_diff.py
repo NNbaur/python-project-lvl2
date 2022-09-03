@@ -1,10 +1,13 @@
+from typing import Any
+
+
 def build_diff_structure(
-    diff_type,
-    key,
-    value_old,
+    diff_type: str,
+    key: str,
+    value_old: Any,
     value_new=None,
     child=None,
-):
+) -> dict:
 
     return {
         'diff_type': diff_type,
@@ -15,7 +18,7 @@ def build_diff_structure(
     }
 
 
-def fill_diff(key, dict1, dict2):
+def fill_diff(key: Any, dict1: dict, dict2: dict) -> dict:
     if key not in dict1:
         collection = build_diff_structure(
             'added',
@@ -54,7 +57,7 @@ def fill_diff(key, dict1, dict2):
     return collection
 
 
-def create_diff(file1, file2):
+def create_diff(file1: dict, file2: dict) -> list:
     keys = file1.keys() | file2.keys()
     diff = []
     for key in sorted(keys):
@@ -62,17 +65,17 @@ def create_diff(file1, file2):
     return diff
 
 
-def get_diff_type(collection):
+def get_diff_type(collection: dict) -> str:
     return collection['diff_type']
 
 
-def get_key(collection):
+def get_key(collection: dict) -> Any:
     return collection['key']
 
 
-def get_value(collection):
+def get_value(collection: dict) -> tuple:
     return (collection['value_old'], collection['value_new'])
 
 
-def get_child(collection):
+def get_child(collection: dict) -> list:
     return collection['child']

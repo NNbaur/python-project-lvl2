@@ -1,8 +1,15 @@
 from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
+from typing import Any
 
 
-def reformat_collection(diff, depth, spaces, collection):
+def reformat_collection(
+        diff: list,
+        depth: int,
+        spaces: str,
+        collection: list
+) -> list:
+
     for tree in diff:
         diff_type = get_diff_type(tree)
         key = get_key(tree)
@@ -85,11 +92,11 @@ def is_none(function):
 
 
 @is_none
-def is_bool(arg):
+def is_bool(arg: Any) -> str:
     return str(arg).lower() if isinstance(arg, bool) else str(arg)
 
 
-def create_value(diff_value, depth):
+def create_value(diff_value: Any, depth: int) -> str:
     template = []
     count = 4 * depth - 2
     spaces = ' ' * count
@@ -115,7 +122,7 @@ def create_value(diff_value, depth):
     return '\n'.join(template)
 
 
-def create_string(spaces, symbol, key, diff_value):
+def create_string(spaces: str, symbol: str, key: Any, diff_value: Any) -> str:
     return '{0}{1} {2}: {3}'.format(
         spaces,
         symbol,
@@ -124,7 +131,7 @@ def create_string(spaces, symbol, key, diff_value):
     )
 
 
-def create_stylish(diff, depth=1):
+def create_stylish(diff: list, depth: int = 1) -> str:
     collection = []
     collection.append('{')
     count = 4 * depth - 2
