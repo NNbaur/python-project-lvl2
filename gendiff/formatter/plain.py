@@ -1,6 +1,7 @@
 from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
 from typing import Any
+from gendiff.formatter.reformat_data import is_bool_or_int
 
 
 def create_plain(diff: list, path=[]) -> str:
@@ -43,24 +44,11 @@ def create_plain(diff: list, path=[]) -> str:
     return '\n'.join(collection)
 
 
-def is_none1(function):
-    def inner(arg):
-        result = function(arg)
-        return 'null' if result == "'None'" else result
-    return inner
-
-
-@is_none1
-def is_bool1(arg: Any) -> Any:
-    return str(arg).lower() if isinstance(arg, bool)\
-        else arg if isinstance(arg, int) else f"'{arg}'"
-
-
 def create_value(diff_value: Any) -> Any:
     if isinstance(diff_value, dict):
         diff_value = '[complex value]'
     else:
-        diff_value = is_bool1(diff_value)
+        diff_value = is_bool_or_int(diff_value)
     return diff_value
 
 

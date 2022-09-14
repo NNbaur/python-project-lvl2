@@ -1,6 +1,7 @@
 from gendiff.diff_builder.build_diff import get_diff_type, get_key,\
     get_value, get_child
 from typing import Any
+from gendiff.formatter.reformat_data import is_bool
 
 
 def reformat_collection(
@@ -82,18 +83,6 @@ def reformat_collection(
             string = '{0}\n{1}'.format(string_old, string_new)
         collection.append(string)
     return collection
-
-
-def is_none(function):
-    def inner(arg):
-        result = function(arg)
-        return 'null' if result == 'None' else result
-    return inner
-
-
-@is_none
-def is_bool(arg: Any) -> str:
-    return str(arg).lower() if isinstance(arg, bool) else str(arg)
 
 
 def create_value(diff_value: Any, depth: int) -> str:
